@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import { posts } from '../../lib/posts';
+export function getStaticPaths() { return posts.map(post => ({ params: { slug: post.slug }, props: { post } })); }
+const { post } = Astro.props;
+const { Content } = post.module;
+const headings = post.module.getHeadings().filter(h => h.depth === 2);
+---
+<Base title={`${post.title} · Engineering Notes`} description={post.description} article>
+  <div class="article-top wrap"><a class="back-link" href="/">← 全部文章</a><div class="post-meta"><time datetime={post.date}>{post.date}</time><span>YCHY</span></div><h1>{post.title}</h1><div class="tags">{post.tags.map(tag => <a href={`/topics/${encodeURIComponent(tag)}/`}>{tag}</a>)}</div></div>
+  <div class="reading-grid wrap"><article class="prose"><Content /><div class="article-end"><span>本文完</span><a href={`https://github.com/ychy7001/engineering-notes/blob/main/articles/${post.slug}/index.md`}>查看原文与修改记录 ↗</a></div></article><aside class="toc" aria-label="文章目录"><details open><summary>本篇目录</summary><ol>{headings.map(h => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></details></aside></div>
+</Base>

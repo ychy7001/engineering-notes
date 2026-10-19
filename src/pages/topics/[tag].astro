@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import { posts, tags, articleHref } from '../../lib/posts';
+export function getStaticPaths() { return tags.map(tag => ({ params: { tag }, props: { tag } })); }
+const { tag } = Astro.props;
+const selected = posts.filter(post => post.tags.includes(tag));
+---
+<Base title={`${tag} · Engineering Notes`}><section class="simple-page wrap"><a class="back-link" href="/topics/">← 全部专题</a><h1>{tag}</h1><div class="topic-posts">{selected.map(post => <article><time datetime={post.date}>{post.date}</time><h2><a href={articleHref(post.slug)}>{post.title}</a></h2><p>{post.description}</p></article>)}</div></section></Base>

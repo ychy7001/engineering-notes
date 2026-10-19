@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';
+import { posts, tags } from '../../lib/posts';
+---
+<Base title="专题 · Engineering Notes"><section class="simple-page wrap"><p class="eyebrow">INDEX / 专题索引</p><h1>从一个问题，<br />找到一组实践。</h1><div class="topic-list">{tags.map(tag => <a href={`/topics/${encodeURIComponent(tag)}/`}><span>{tag}</span><small>{posts.filter(p => p.tags.includes(tag)).length} 篇记录</small><span aria-hidden="true">↗</span></a>)}</div></section></Base>

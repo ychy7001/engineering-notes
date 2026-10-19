@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { posts, tags, articleHref } from '../lib/posts';
+---
+<Base>
+  <section class="intro wrap">
+    <div><p class="eyebrow">FIELD NOTES / 工程现场</p><h1>把问题拆开，<br />把过程留下。</h1></div>
+    <div class="intro-aside"><p>记录网络、LLM 服务与 Agent 工程中的真实问题。<br />从现象出发，用实验验证，在取舍中推进。</p><a class="text-link" href="/about/">关于这本手记 <span aria-hidden="true">↗</span></a></div>
+  </section>
+  <section class="archive wrap" aria-labelledby="articles-title">
+    <div class="section-label"><h2 id="articles-title">文章记录</h2><span>{String(posts.length).padStart(2, '0')} 篇 / 持续整理</span></div>
+    <div class="archive-grid">
+      <div class="post-list">{posts.map((post, index) => <article class="post-row"><div class="post-index">{String(index + 1).padStart(2, '0')}</div><div><div class="post-meta"><time datetime={post.date}>{post.date.replaceAll('-', '.')}</time><span>排查与实践</span></div><h3><a href={articleHref(post.slug)}>{post.title}</a></h3><p class="post-summary">{post.description}</p><div class="post-bottom"><div class="tags">{post.tags.map(tag => <a href={`/topics/${encodeURIComponent(tag)}/`}>{tag}</a>)}</div><a class="read-link" href={articleHref(post.slug)}>阅读全文 <span aria-hidden="true">↗</span></a></div></div></article>)}</div>
+      <aside class="archive-aside"><h3>关注方向</h3><ul>{tags.map(tag => <li><a href={`/topics/${encodeURIComponent(tag)}/`}>{tag}<span>{posts.filter(p => p.tags.includes(tag)).length.toString().padStart(2, '0')}</span></a></li>)}</ul><p class="aside-note">现象、假设、实验、结果。<br />也记录尚未解决的问题。</p></aside>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+const { title = 'Engineering Notes · YCHY', description = '记录真实工程问题的现象、实验与设计取舍。网络、LLM 服务与 Agent 工程。', article = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f7f6f2" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="site-header wrap">
+      <a class="brand" href="/" aria-label="Engineering Notes 首页"><span class="brand-mark">Y.</span><span>Engineering Notes<small>YCHY 的工程手记</small></span></a>
+      <nav aria-label="主导航">
+        <a href="/" aria-current={path === '/' || path.startsWith('/articles/') ? 'page' : undefined}>文章</a>
+        <a href="/topics/" aria-current={path.startsWith('/topics/') ? 'page' : undefined}>专题</a>
+        <a href="/about/" aria-current={path === '/about/' ? 'page' : undefined}>关于</a>
+        <a class="github-link" href="https://github.com/ychy7001/engineering-notes">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer wrap"><p>把现象写清楚，让结论有依据。</p><p>© {new Date().getFullYear()} YCHY <span>·</span> <a href="https://github.com/ychy7001/engineering-notes">文章源文件 ↗</a></p></footer>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 
 真实工程问题的排查记录：现象、假设、实验、结果与设计取舍。
 
-作者：[ychy7001](https://github.com/ychy7001)
+作者：[ychy7001](https://github.com/ychy7001) · 个人站：[blog.ails.ltd](https://blog.ails.ltd/)
 
 ## 文章
 
@@ -17,3 +17,7 @@
 实测结果注明测试条件，不将单次测量当作长期性能承诺。文章后续有新证据时，会更新正文并保留 Git 修改记录。
 
 本仓库尚未授予通用转载或代码使用许可证；如需转载，请联系作者。
+
+## 站点与发布
+
+[三渠道站点方案](docs/site-plan.md) · [社区发布工具核查](docs/publishing.md)

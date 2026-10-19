@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blog.ails.ltd/sitemap-index.xml

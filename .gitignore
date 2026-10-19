@@ -16,3 +16,6 @@ __pycache__/
 node_modules/
 .cdp-profile/
 _wf/
+dist/
+.astro/
+public/articles/
