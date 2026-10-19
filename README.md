@@ -21,3 +21,26 @@
 ## 站点与发布
 
 [三渠道站点方案](docs/site-plan.md) · [社区发布工具核查](docs/publishing.md)
+
+
+## 新增文章
+
+在 `articles/<slug>/index.md` 编写正文，并将配图放在同一目录。文件开头使用以下元数据：
+
+```yaml
+---
+title: 文章标题
+date: "2026-10-19"
+description: 一句话概括问题与结果。
+tags: [网络诊断, API 网关]
+---
+```
+
+本地预览需要 Node.js 22.22 或更高版本：
+
+```bash
+npm ci
+npm run dev
+```
+
+提交前运行 `npm run build`。向 `main` 推送后，GitHub Actions 自动构建和发布个人站；在 Actions 中确认部署成功。博客园同步将在账号开通并验证接口后接入。
